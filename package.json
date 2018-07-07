@@ -4,19 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "bankai start"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "bankai": "^9.14.0"
+    "bankai": "^9.14.0",
+    "choo-devtools": "^2.5.1",
+    "random-access-memory": "^3.0.0"
   },
   "dependencies": {
     "choo": "^6.12.1",
-    "choo-devtools": "^2.5.1",
+    "choo-service-worker": "^2.4.0",
     "hyperdrive": "^9.14.0",
     "hyperscript": "^2.0.2",
+    "pump": "^3.0.0",
+    "random-access-idb": "git+https://github.com/random-access-storage/random-access-idb.git",
+    "through2": "^2.0.3",
+    "websocket-stream": "^5.1.2",
     "webworkify": "^1.5.0",
     "workerstream": "^1.2.1"
   }
