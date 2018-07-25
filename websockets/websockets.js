@@ -1,22 +1,40 @@
 const websocket = require('websocket-stream')
 const hyperdrive = require('hyperdrive')
+//const hyperdrive = require('@jimpick/hyperdrive-hyperdb-backend')
 const rai = require('random-access-idb')
 const through = require('through2')
 const pump = require('pump')
 
-const key = '88760581506755667b5de85e852009877ae5a5bd6a9c7e62e881d072b71bb1b8'
-const url = `ws://localhost:3000/${key}`
-const drive = hyperdrive(rai('ws'), key)
+const key = '35f4a7db38f758404469a7c2b2011e8185cf12e920de5f0b6959096c7c0ef46e'
+const url = `ws://localhost:3000`
+const archive = hyperdrive(rai('ws'), key)
 
-module.exports = websocketStore 
+module.exports = websocketStore
 
 function websocketStore (state, emitter) {
-    state.drive = drive
-
-    drive.once('ready', () => {
+    state.archive = archive
+    archive.ready(() => {
         const socket = websocket(url)
-      
-        socket.pipe(drive.replicate()).pipe(through(logger)).pipe(socket)
+
+        connectSocket()
+
+        function connectSocket() {
+            pump(
+                socket,
+                archive.replicate({ live: true }),
+                through(logger),
+                socket,
+                done
+            )
+        }
+
+        function done (err) {
+            if (err) {
+							setTimeout(connectSocket, 5000)
+							console.log(err)
+						}
+            console.log('RESTARTED')
+        }
 
         function logger (chunk, encoding, next) {
             console.log(chunk)

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "bankai start"
+    "start": "bankai start",
+    "build": "bankai build"
   },
   "keywords": [],
   "author": "",
@@ -16,9 +17,11 @@
     "random-access-memory": "^3.0.0"
   },
   "dependencies": {
+    "@jimpick/hyperdrive-hyperdb-backend": "^9.12.3-10",
     "choo": "^6.12.1",
     "choo-service-worker": "^2.4.0",
-    "hyperdrive": "^9.14.0",
+    "dat-archive-web": "^1.1.0",
+    "hyperdrive": "git+https://github.com/mafintosh/hyperdrive.git#hyperdb-backend",
     "hyperscript": "^2.0.2",
     "pump": "^3.0.0",
     "random-access-idb": "git+https://github.com/random-access-storage/random-access-idb.git",
